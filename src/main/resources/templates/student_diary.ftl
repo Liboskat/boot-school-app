@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>School app</title>
+    <title>Школьный портал</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,7 +14,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<a class="navbar-brand" href="/">Student diary week ${week}</a>
+<a class="navbar-brand" href="/">Дневник за неделю ${week}</a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
@@ -22,32 +22,32 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="/student/timetable">Timetable</a>
+            <a class="nav-link" href="/student/timetable">Расписание</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/student/diary">Diary <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/student/diary">Дневник <span class="sr-only">(current)</span></a>
         </li>
     </ul>
 
     <span class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="/logout">Выйти</a>
     </span>
 </div>
 </nav>
 <ul class="pagination w-50 mt-3 mx-auto">
-    <li class="page-item mx-auto w-50"><a class="page-link" href="/student/diary/${week - 1}">Previous week</a></li>
-    <li class="page-item mx-auto w-50"><a class="page-link" href="/student/diary/">Current week</a></li>
-    <li class="page-item mx-auto w-50"><a class="page-link" href="/student/diary/${week + 1}">Next week</a></li>
+    <li class="page-item mx-auto w-50"><a class="page-link" href="/student/diary/${week - 1}">Предыдущая неделя</a></li>
+    <li class="page-item mx-auto w-50"><a class="page-link" href="/student/diary/">Текущая неделя</a></li>
+    <li class="page-item mx-auto w-50"><a class="page-link" href="/student/diary/${week + 1}">Следующая неделя</a></li>
 </ul>
 
 <table class="table table-hover">
     <thead class="thead-light">
     <tr>
-        <th scope="col">Weekday</th>
-        <th scope="col">Time</th>
-        <th scope="col">Lesson</th>
-        <th scope="col">Homework</th>
-        <th scope="col">Mark</th>
+        <th scope="col">День недели</th>
+        <th scope="col">Время</th>
+        <th scope="col">Урок</th>
+        <th scope="col">Домашнее задание</th>
+        <th scope="col">Оценка</th>
     </tr>
     </thead>
     <tbody>

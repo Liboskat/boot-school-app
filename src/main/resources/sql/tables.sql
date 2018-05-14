@@ -16,11 +16,8 @@ CREATE TABLE users (
   name VARCHAR(20) NOT NULL,
   surname VARCHAR(30) NOT NULL,
   patronymic VARCHAR(20),
-  CONSTRAINT PK_user PRIMARY KEY (id),
-  CONSTRAINT FK_invite FOREIGN KEY (invite_id) REFERENCES invite (id)
+  CONSTRAINT PK_user PRIMARY KEY (id)
 );
-
-ALTER TABLE invite ADD CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users (id);
 
 CREATE TABLE class (
   id SERIAL NOT NULL,

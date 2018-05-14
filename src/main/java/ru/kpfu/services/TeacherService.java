@@ -6,8 +6,6 @@ import ru.kpfu.dtos.UserDto;
 import ru.kpfu.forms.AddHomeworkForm;
 import ru.kpfu.forms.AddMarkForm;
 import ru.kpfu.models.Homework;
-import ru.kpfu.models.Lesson;
-import ru.kpfu.models.User;
 
 import java.util.Date;
 import java.util.List;

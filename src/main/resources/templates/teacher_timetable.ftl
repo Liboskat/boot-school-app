@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>School app</title>
+    <title>Школьный портал</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,22 +14,22 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Teacher</a>
+    <a class="navbar-brand" href="/">Личный кабинет учителя</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="/teacher/timetable">Timetable <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/teacher/timetable">Расписание <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/teacher/lesson">Lesson</a>
+            <a class="nav-link" href="/teacher/lesson">Работа на уроке</a>
         </li>
     </ul>
 
     <span class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="/logout">Выйти</a>
     </span>
 </nav>
 
@@ -37,9 +37,11 @@
 <table class="table table-hover">
     <thead class="thead-light">
         <tr>
-            <th scope="col" class="w-25">Weekday</th>
-            <th scope="col" class="w-25">Time</th>
-            <th scope="col">Lesson</th>
+            <th scope="col" class="w-25">День недели</th>
+            <th scope="col" class="w-10">Время</th>
+            <th scope="col" class="w-10">Урок</th>
+            <th scope="col" class="w-10">Кабинет</th>
+            <th scope="col">Класс</th>
         </tr>
     </thead>
     <tbody>
@@ -50,6 +52,8 @@
             <td title="${lesson}">
                 ${lesson.subject}
             </td>
+            <td>${lesson.room}</td>
+            <td>${lesson.studentClass}</td>
         </tr>
         </#list>
     </tbody>

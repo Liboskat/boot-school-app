@@ -9,6 +9,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kpfu.models.User;
@@ -22,11 +23,10 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 
     private final UserRepository userRepository;
     private final UserDetailsService userDetailsService;
-    private final PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
-    public AuthenticationProviderImpl(UserRepository userRepository, UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+    public AuthenticationProviderImpl(UserRepository userRepository, UserDetailsService userDetailsService) {
         this.userRepository = userRepository;
         this.userDetailsService = userDetailsService;
     }
@@ -39,10 +39,10 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             if (!passwordEncoder.matches(password, user.getPassword())) {
-                throw new BadCredentialsException("Wrong login or password");
+                throw new BadCredentialsException("Неверный логин или пароль");
             }
         } else {
-            throw new BadCredentialsException("Wrong login or password");
+            throw new BadCredentialsException("Неверный логин или пароль");
         }
         UserDetails details = userDetailsService.loadUserByUsername(username);
         Collection<? extends GrantedAuthority> authorities = details.getAuthorities();

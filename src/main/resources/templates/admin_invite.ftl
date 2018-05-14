@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>School app</title>
+    <title>Школьный портал</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,7 +14,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Student</a>
+    <a class="navbar-brand" href="/">Личный кабинет администратора</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,38 +22,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/student/timetable">Timetable <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/student/diary">Diary</a>
+                <a class="nav-link" href="/admin/invite">Пригласить пользователя <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
 
     <span class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="/logout">Выйти</a>
     </span>
 </nav>
 
-<table class="table table-hover">
-    <thead class="thead-light">
-    <tr>
-        <th scope="col" class="w-25">Weekday</th>
-        <th scope="col" class="w-25">Time</th>
-        <th scope="col">Lesson</th>
-    </tr>
-    </thead>
-    <tbody>
-        <#list lessons as lesson>
-        <tr>
-            <td scope="row">${lesson.weekday}</td>
-            <td>${lesson.startTime} - ${lesson.endTime}</td>
-            <td title="${lesson}">
-                ${lesson.subject}
-            </td>
-        </tr>
-        </#list>
-    </tbody>
-</table>
+<form method="post" class="container-fluid form-inline mx-5 mt-3 mb-2">
+    <div class="form-group">
+        <label for="role">Выберите роль:</label>
+        <select name="role" id="role" class="form-control mx-3" required>
+            <option value="STUDENT" name="STUDENT">Ученик</option>
+            <option value="TEACHER" name="TEACHER">Учитель</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default ml-2">Сгенерировать</button>
+</form>
+<#if invite_code??>
+    <div class="alert alert-success">
+        <strong>Дело сделано!</strong> Пригласительный код: <mark>${invite_code}</mark>
+    </div>
+</#if>
 </body>
 </html>

@@ -9,7 +9,7 @@ public class GlobalExceptionController {
     public ModelAndView serverError(Exception ex) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("error");
-        modelAndView.addObject("msg", "Server error:" + ex.getMessage());
+        modelAndView.addObject("msg", "Серверная ошибка:" + ex.getMessage());
         return modelAndView;
     }
 }

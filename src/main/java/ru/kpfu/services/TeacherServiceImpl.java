@@ -1,6 +1,5 @@
 package ru.kpfu.services;
 
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -18,27 +17,27 @@ import ru.kpfu.repositories.MarkRepository;
 import ru.kpfu.repositories.UserRepository;
 
 import java.util.*;
-import java.util.function.Supplier;
 
 @Service
 public class TeacherServiceImpl implements TeacherService{
+    private final DateUtil dateUtil;
+    private final UserRepository userRepository;
+    private final LessonRepository lessonRepository;
+    private final HomeworkRepository homeworkRepository;
+    private final MarkRepository markRepository;
+
     @Autowired
-    private DateUtil dateUtil;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private LessonRepository lessonRepository;
-    @Autowired
-    private HomeworkRepository homeworkRepository;
-    @Autowired
-    private MarkRepository markRepository;
+    public TeacherServiceImpl(DateUtil dateUtil, UserRepository userRepository, LessonRepository lessonRepository, HomeworkRepository homeworkRepository, MarkRepository markRepository) {
+        this.dateUtil = dateUtil;
+        this.userRepository = userRepository;
+        this.lessonRepository = lessonRepository;
+        this.homeworkRepository = homeworkRepository;
+        this.markRepository = markRepository;
+    }
+
     @Override
     public List<LessonDto> getTimetable(String login) {
-        User teacher = userRepository.findByLogin(login).orElseThrow(() -> new DataAccessException("database error") {
-            @Override
-            public String getMessage() {
-                return super.getMessage();
-            }
+        User teacher = userRepository.findByLogin(login).orElseThrow(() -> new DataAccessException("Ошибка в БД") {
         });
         List<LessonDto> list = new ArrayList<>();
         List<Lesson> lessons = lessonRepository.getByTeacher(teacher);
@@ -63,12 +62,7 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public List<LessonDto> getLessonsByDate(String login, Date date) {
-        User teacher = userRepository.findByLogin(login).orElseThrow(() -> new DataAccessException("database error") {
-            @Override
-            public String getMessage() {
-                return super.getMessage();
-            }
-        });
+        User teacher = userRepository.findByLogin(login).orElseThrow(() -> new DataAccessException("Ошибка в БД") {});
         List<LessonDto> list = new ArrayList<>();
         List<Lesson> lessons = lessonRepository.getByWeekdayAndTeacher(dateUtil.getDayOfWeek(date), teacher);
         Collections.sort(lessons);

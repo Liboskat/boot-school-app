@@ -3,8 +3,6 @@ package ru.kpfu.dtos;
 import lombok.*;
 import ru.kpfu.models.StudentClass;
 import ru.kpfu.services.DateHelper;
-import ru.kpfu.services.DateUtil;
-import ru.kpfu.services.DateUtilImpl;
 
 @Getter
 @Setter

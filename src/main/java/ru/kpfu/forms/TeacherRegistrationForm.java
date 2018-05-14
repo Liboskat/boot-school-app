@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
         @FieldsValueMatch(
                 field = "password",
                 fieldMatch = "passwordRepeat",
-                message = "Passwords do not match!"
+                message = "Пароли не совпадают!"
         )
 })
 public class TeacherRegistrationForm {
@@ -33,6 +33,6 @@ public class TeacherRegistrationForm {
     private String surname;
     private String patronymic;
     private String email;
-    @Pattern(regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", message = "not correct phone number")
+    @Pattern(regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", message = "Неверный номер телефона")
     private String phoneNumber;
 }

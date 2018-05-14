@@ -1,11 +1,7 @@
 package ru.kpfu.services;
 
 
-import java.util.Calendar;
 import java.util.Date;
-
-import static java.util.Calendar.*;
-import static java.util.Calendar.DATE;
 
 public interface DateUtil {
     String STRING_DATE_TYPE_RUS = "dd.MM.yyyy";

@@ -1,9 +1,7 @@
 package ru.kpfu.dtos;
 
 import lombok.*;
-import ru.kpfu.models.StudentClass;
 import ru.kpfu.models.User;
-import ru.kpfu.services.DateHelper;
 
 @Getter
 @Setter

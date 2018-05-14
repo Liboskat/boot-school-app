@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static java.util.Calendar.*;
-import static java.util.Calendar.DATE;
 
 public class DateHelper {
     public static int getDifferenceBetweenCurrentYearAndAnother(int year) {
@@ -25,19 +24,19 @@ public class DateHelper {
     public static String getNameOfWeekday(int weekday) {
         switch (weekday) {
             case 1:
-                return "1";
+                return "Понедельник";
             case 2:
-                return "2";
+                return "Вторник";
             case 3:
-                return "3";
+                return "Среда";
             case 4:
-                return "4";
+                return "Четверг";
             case 5:
-                return "5";
+                return "Пятница";
             case 6:
-                return "6";
+                return "Суббота";
             case 7:
-                return "7";
+                return "Воскресенье";
             default:
                 return "??";
         }

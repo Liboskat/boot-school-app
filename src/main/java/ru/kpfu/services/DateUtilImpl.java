@@ -1,6 +1,5 @@
 package ru.kpfu.services;
 
-import lombok.SneakyThrows;
 import org.joda.time.DateTime;
 import org.joda.time.Weeks;
 import org.springframework.stereotype.Service;

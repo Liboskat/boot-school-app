@@ -3,8 +3,6 @@ package ru.kpfu.forms;
 import lombok.*;
 import ru.kpfu.validators.FieldsValueMatch;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -18,7 +16,7 @@ import javax.validation.constraints.Pattern;
         @FieldsValueMatch(
                 field = "password",
                 fieldMatch = "passwordRepeat",
-                message = "Passwords do not match!"
+                message = "Пароли не совпадают!"
         )
 })
 public class StudentRegistrationForm {
@@ -36,7 +34,7 @@ public class StudentRegistrationForm {
     private String surname;
     private String patronymic;
     private String email;
-    @Pattern(regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", message = "not correct phone number")
+    @Pattern(regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", message = "Неверный номер телефона")
     private String phoneNumber;
     @NotNull
     private String classId;

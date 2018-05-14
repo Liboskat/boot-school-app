@@ -1,8 +1,6 @@
 package ru.kpfu.services;
 
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -41,12 +39,12 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public void registerStudent(StudentRegistrationForm form)  throws DuplicateKeyException, InviteNotFoundException {
         Optional<Invite> inviteOptional = inviteRepository.findByCode(form.getInvite());
-        Invite invite = inviteOptional.orElseThrow(() -> new InviteNotFoundException("Invite not found"));
+        Invite invite = inviteOptional.orElseThrow(() -> new InviteNotFoundException("Неверный пригласительный код"));
         if(invite.getIsUsed()) {
-            throw new DuplicateKeyException("Invite is already used");
+            throw new DuplicateKeyException("Пригласительный код уже использован");
         }
         if(userRepository.existsByLogin(form.getLogin())) {
-            throw new DuplicateKeyException("User is already exist");
+            throw new DuplicateKeyException("Логин уже использован");
         }
         StudentClass studentClass = studentClassRepository.findOne(Long.parseLong(form.getClassId()));
         User user = User.builder()
@@ -70,12 +68,12 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public void registerTeacher(TeacherRegistrationForm form) throws DuplicateKeyException, InviteNotFoundException {
         Optional<Invite> inviteOptional = inviteRepository.findByCode(form.getInvite());
-        Invite invite = inviteOptional.orElseThrow(() -> new InviteNotFoundException("Invite not found"));
+        Invite invite = inviteOptional.orElseThrow(() -> new InviteNotFoundException("Неверный пригласительный код"));
         if(invite.getIsUsed()) {
-            throw new DuplicateKeyException("Invite is already used");
+            throw new DuplicateKeyException("Пригласительный код уже использован");
         }
         if(userRepository.existsByLogin(form.getLogin())) {
-            throw new DuplicateKeyException("User is already exist");
+            throw new DuplicateKeyException("Логин уже использован");
         }
 
         User user = User.builder()
