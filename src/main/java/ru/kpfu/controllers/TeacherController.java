@@ -61,6 +61,7 @@ public class TeacherController {
                 modelMap.put("homework", teacherService.getHomeworkByLessonIdAndDate(lessonId,
                         dateUtil.convertFromString(DateUtil.STRING_DATE_TYPE_ISO, date)));
                 modelMap.put("students", teacherService.getStudentsByLesson(lessonId));
+                modelMap.put("marks", teacherService.getMarksByLessonAndDate(lessonId, dateUtil.convertFromString(DateUtil.STRING_DATE_TYPE_ISO, date)));
             }
             System.out.println(date);
             System.out.println(lessonId);

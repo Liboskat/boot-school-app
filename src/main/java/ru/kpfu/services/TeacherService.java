@@ -2,6 +2,7 @@ package ru.kpfu.services;
 
 import org.springframework.stereotype.Service;
 import ru.kpfu.dtos.LessonDto;
+import ru.kpfu.dtos.MarkDto;
 import ru.kpfu.dtos.UserDto;
 import ru.kpfu.forms.AddHomeworkForm;
 import ru.kpfu.forms.AddMarkForm;
@@ -17,4 +18,5 @@ public interface TeacherService {
     List<UserDto> getStudentsByLesson(String lessonId);
     void saveMark(AddMarkForm form);
     void saveHomework(AddHomeworkForm form);
+    List<MarkDto> getMarksByLessonAndDate(String lessonId, Date date);
 }

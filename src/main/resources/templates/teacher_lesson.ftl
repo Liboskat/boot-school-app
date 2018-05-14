@@ -54,9 +54,9 @@
                     <#if lessons?has_content>
                         <#list lessons as lesson>
                             <#if lessonId?? && lesson.id?? && lessonId == lesson.id>
-                                <option value="${lesson.id}" name="${lesson.id}" selected>${lesson.subject}</option>
+                                <option value="${lesson.id}" name="${lesson.id}" selected>${lesson.subject}, ${lesson.startTime}, ${lesson.studentClass}</option>
                             <#elseif lesson.id??>
-                                <option value="${lesson.id}" name="${lesson.id}">${lesson.subject}</option>
+                                <option value="${lesson.id}" name="${lesson.id}">${lesson.subject}, ${lesson.startTime}, ${lesson.studentClass}</option>
                             </#if>
                         </#list>
                     <#else>
@@ -68,7 +68,7 @@
         </div>
     </#if>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-4">
         <#if lessonId??>
         <div class="col-4 mr-2 border border-info">
             <form method="post" name="mark_form" class="p-2">
@@ -111,7 +111,28 @@
             </form>
         </div>
     </#if>
-</div>
+    </div>
+    <#if lessonId??>
+    <div class="row mt-4">
+        <h4>Оценки учеников за этот урок</h4>
+        <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col" class="w-75">Ученик</th>
+                <th scope="col" class="w-25">Оценка</th>
+            </tr>
+            </thead>
+            <tbody>
+        <#list marks as mark>
+        <tr>
+            <td scope="row">${mark.student}</td>
+            <td>${mark.value}</td>
+        </tr>
+        </#list>
+            </tbody>
+        </table>
+    </div>
+    </#if>
 </div>
 
 </body>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import ru.kpfu.dtos.LessonDto;
+import ru.kpfu.dtos.MarkDto;
 import ru.kpfu.dtos.UserDto;
 import ru.kpfu.forms.AddHomeworkForm;
 import ru.kpfu.forms.AddMarkForm;
@@ -44,6 +45,14 @@ public class TeacherServiceImpl implements TeacherService{
         Collections.sort(lessons);
         lessons.forEach(l -> list.add(LessonDto.buildFrom(l)));
         return list;
+    }
+
+    @Override
+    public List<MarkDto> getMarksByLessonAndDate(String lessonId, Date date) {
+        List<MarkDto> markDtos = new ArrayList<>();
+        Lesson lesson = lessonRepository.findOne(Long.parseLong(lessonId));
+        markRepository.findByLessonAndDate(lesson, date).forEach(m -> markDtos.add(MarkDto.buildFrom(m)));
+        return markDtos;
     }
 
     @Override

@@ -14,4 +14,5 @@ import java.util.Optional;
 public interface MarkRepository extends CrudRepository<Mark, Long> {
     Optional<Mark> findByLessonAndDateAndStudent(Lesson lesson, Date date, User student);
     List<Mark> findByLessonAndStudent(Lesson lesson, User student);
+    List<Mark> findByLessonAndDate(Lesson lesson, Date date);
 }
