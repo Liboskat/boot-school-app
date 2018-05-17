@@ -1,6 +1,8 @@
 package ru.kpfu.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import ru.kpfu.dtos.DiaryUnit;
@@ -11,6 +13,7 @@ import ru.kpfu.repositories.LessonRepository;
 import ru.kpfu.repositories.MarkRepository;
 import ru.kpfu.repositories.UserRepository;
 
+import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,7 +35,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<LessonDto> getTimetable(String login) {
+    public List<LessonDto> getTimetable(Principal principal) {
+        String login = principal.getName();
         User student = userRepository.findByLogin(login).orElseThrow(() -> new DataAccessException("Ошибка базы данных") {
         });
         List<LessonDto> list = new ArrayList<>();
@@ -43,7 +47,10 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<DiaryUnit> getDiary(String login, int week) {
+    @Cacheable(value = "diaryUnits", key = "#principal.name.concat('-').concat(#week)")
+    public List<DiaryUnit> getDiary(Principal principal, int week) {
+
+        String login = principal.getName();
         List<DiaryUnit> diary = new ArrayList<>();
         User student = userRepository.findByLogin(login).orElseThrow(() -> new DataAccessException("Ошибка базы данных") {});
         List<Lesson> lessons = lessonRepository.getByStudentClass(student.getStudentClass().get(0));

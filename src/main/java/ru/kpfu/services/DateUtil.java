@@ -12,5 +12,6 @@ public interface DateUtil {
     int getDayOfWeek(Date date);
     int toWeek(Date date);
     int getMonth(Date date);
-    int getMaximumWeek(Date date);
+    int getMaximumWeek();
+    int getCurrentWeek();
 }

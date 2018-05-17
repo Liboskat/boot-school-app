@@ -3,6 +3,7 @@ package ru.kpfu.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
@@ -12,7 +13,7 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name = "homework")
-public class Homework {
+public class Homework implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

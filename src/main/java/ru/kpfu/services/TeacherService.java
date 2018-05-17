@@ -8,15 +8,16 @@ import ru.kpfu.forms.AddHomeworkForm;
 import ru.kpfu.forms.AddMarkForm;
 import ru.kpfu.models.Homework;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 @Service
 public interface TeacherService {
-    List<LessonDto> getTimetable(String login);
-    List<LessonDto> getLessonsByDate(String login, Date date);
-    Homework getHomeworkByLessonIdAndDate(String lessonId, Date date);
+    List<LessonDto> getTimetable(Principal principal);
+    List<LessonDto> getLessonsByDate(Principal principal, String date);
+    Homework getHomeworkByLessonAndDate(String lessonId, String date);
     List<UserDto> getStudentsByLesson(String lessonId);
     void saveMark(AddMarkForm form);
     void saveHomework(AddHomeworkForm form);
-    List<MarkDto> getMarksByLessonAndDate(String lessonId, Date date);
+    List<MarkDto> getMarksByLessonAndDate(String lessonId, String date);
 }

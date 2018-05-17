@@ -4,6 +4,7 @@ import lombok.*;
 import ru.kpfu.security.roles.UserRole;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Getter
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "invite")
-public class Invite {
+public class Invite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 @Builder
 @Entity
 @Table(name = "lesson_number_time")
-public class LessonNumberTime {
+public class LessonNumberTime implements Serializable {
     @Id
     @Column(name = "lesson_number")
     private Integer lessonNumber;

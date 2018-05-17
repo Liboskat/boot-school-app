@@ -3,6 +3,7 @@ package ru.kpfu.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -13,7 +14,7 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode
 @Table(name = "class")
-public class StudentClass {
+public class StudentClass implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

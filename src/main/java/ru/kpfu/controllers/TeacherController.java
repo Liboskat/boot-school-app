@@ -38,7 +38,7 @@ public class TeacherController {
     @PreAuthorize("hasAuthority('TEACHER')")
     @RequestMapping(value = "/teacher/timetable", method = RequestMethod.GET)
     public String getTimetable(ModelMap modelMap, Principal principal){
-        modelMap.put("lessons", teacherService.getTimetable(principal.getName()));
+        modelMap.put("lessons", teacherService.getTimetable(principal));
         return "teacher_timetable";
     }
 
@@ -47,21 +47,18 @@ public class TeacherController {
     public String getLessonPage(ModelMap modelMap, Principal principal, RedirectAttributes redirectAttributes,
                                 @RequestParam(value = "date", required = false) String date,
                                 @RequestParam(value = "lessonId", required = false) String lessonId){
-        String login = principal.getName();
         if(date == null || date.isEmpty()) {
             redirectAttributes.addAttribute("date", dateUtil.convertCurrentDateToString(DateUtil.STRING_DATE_TYPE_ISO));
             return "redirect:/teacher/lesson";
         } else {
-            List<LessonDto> lessons = teacherService.getLessonsByDate(login,
-                    dateUtil.convertFromString(DateUtil.STRING_DATE_TYPE_ISO, date));
+            List<LessonDto> lessons = teacherService.getLessonsByDate(principal, date);
             modelMap.put("lessons", lessons);
             modelMap.put("date", date);
             if(lessonId != null && !lessonId.isEmpty()) {
                 modelMap.put("lessonId", lessonId);
-                modelMap.put("homework", teacherService.getHomeworkByLessonIdAndDate(lessonId,
-                        dateUtil.convertFromString(DateUtil.STRING_DATE_TYPE_ISO, date)));
+                modelMap.put("homework", teacherService.getHomeworkByLessonAndDate(lessonId, date));
                 modelMap.put("students", teacherService.getStudentsByLesson(lessonId));
-                modelMap.put("marks", teacherService.getMarksByLessonAndDate(lessonId, dateUtil.convertFromString(DateUtil.STRING_DATE_TYPE_ISO, date)));
+                modelMap.put("marks", teacherService.getMarksByLessonAndDate(lessonId, date));
             }
             System.out.println(date);
             System.out.println(lessonId);

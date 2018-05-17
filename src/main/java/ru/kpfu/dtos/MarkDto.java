@@ -3,6 +3,7 @@ package ru.kpfu.dtos;
 import lombok.*;
 import ru.kpfu.models.Mark;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -12,7 +13,7 @@ import java.text.SimpleDateFormat;
 @NoArgsConstructor
 @Builder
 @ToString
-public class MarkDto {
+public class MarkDto implements Serializable {
     private String id;
     private String value;
     private String date;

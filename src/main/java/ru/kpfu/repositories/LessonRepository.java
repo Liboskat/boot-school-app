@@ -1,5 +1,8 @@
 package ru.kpfu.repositories;
 
+import org.hibernate.annotations.Cache;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.kpfu.models.Lesson;
@@ -10,7 +13,10 @@ import java.util.List;
 
 @Repository
 public interface LessonRepository extends CrudRepository <Lesson, Long> {
+    @Cacheable(value = "lessons")
     List<Lesson> getByTeacher(User user);
+    @Cacheable(value = "lessons")
     List<Lesson> getByStudentClass(StudentClass studentClass);
+    @Cacheable(value = "lessons")
     List<Lesson> getByWeekdayAndTeacher(Integer weekday, User teacher);
 }

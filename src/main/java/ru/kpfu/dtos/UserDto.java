@@ -3,12 +3,14 @@ package ru.kpfu.dtos;
 import lombok.*;
 import ru.kpfu.models.User;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDto {
+public class UserDto implements Serializable {
     private String id;
     private String name;
     private String surname;

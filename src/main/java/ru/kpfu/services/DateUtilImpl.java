@@ -44,7 +44,8 @@ public class DateUtilImpl implements DateUtil {
     }
 
     @Override
-    public int getMaximumWeek(Date date) {
+    public int getMaximumWeek() {
+        Date date = new Date();
         Calendar start = Calendar.getInstance();
         start.set(MONTH, SEPTEMBER);
         start.set(DAY_OF_MONTH, 1);
@@ -61,6 +62,11 @@ public class DateUtilImpl implements DateUtil {
         DateTime dateTime1 = new DateTime(start.getTime());
         DateTime dateTime2 = new DateTime(end.getTime());
         return Weeks.weeksBetween(dateTime1, dateTime2).getWeeks() + 1;
+    }
+
+    @Override
+    public int getCurrentWeek() {
+        return toWeek(new Date());
     }
 
     @Override

@@ -34,14 +34,14 @@ public class StudentController {
     @PreAuthorize("hasAuthority('STUDENT')")
     @RequestMapping(value = "/student/timetable", method = RequestMethod.GET)
     public String getTimetable(ModelMap modelMap, Principal principal){
-        modelMap.put("lessons", studentService.getTimetable(principal.getName()));
+        modelMap.put("lessons", studentService.getTimetable(principal));
         return "student_timetable";
     }
 
     @PreAuthorize("hasAuthority('STUDENT')")
     @RequestMapping(value = "/student/diary", method = RequestMethod.GET)
     public String getDiary(RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("week", dateUtil.toWeek(new Date()));
+        redirectAttributes.addAttribute("week", dateUtil.getCurrentWeek());
         return "redirect:/student/diary/{week}";
     }
 
@@ -50,14 +50,14 @@ public class StudentController {
     public String getDiaryByWeek(RedirectAttributes redirectAttributes, ModelMap modelMap, Principal principal,
                                  @PathVariable("week") Integer week){
         if(week < 1) {
-            redirectAttributes.addAttribute("week", dateUtil.getMaximumWeek(new Date()));
+            redirectAttributes.addAttribute("week", dateUtil.getMaximumWeek());
             return "redirect:/student/diary/{week}";
-        } else if (week > dateUtil.getMaximumWeek(new Date())) {
+        } else if (week > dateUtil.getMaximumWeek()) {
             redirectAttributes.addAttribute("week", 1);
             return "redirect:/student/diary/{week}";
         }
         modelMap.put("week", week);
-        modelMap.put("diary", studentService.getDiary(principal.getName(), week));
+        modelMap.put("diary", studentService.getDiary(principal, week));
         return "student_diary";
     }
 

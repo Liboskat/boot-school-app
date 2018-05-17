@@ -1,10 +1,12 @@
 package ru.kpfu.dtos;
 
 import lombok.*;
+import org.springframework.cache.annotation.Caching;
 import ru.kpfu.models.Homework;
 import ru.kpfu.models.Lesson;
 import ru.kpfu.models.Mark;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @ToString
-public class DiaryUnit {
+public class DiaryUnit implements Serializable {
     private LessonDto lessonDto;
     private String date;
     private String homework;

@@ -4,12 +4,14 @@ import lombok.*;
 import ru.kpfu.models.StudentClass;
 import ru.kpfu.services.DateHelper;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StudentClassDto {
+public class StudentClassDto implements Serializable {
     private String id;
     private String number;
     private String letter;

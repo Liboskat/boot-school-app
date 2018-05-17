@@ -1,6 +1,7 @@
 package ru.kpfu.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -92,6 +93,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
+    @Cacheable("studentClasses")
     public List<StudentClassDto> getClasses() {
         List<StudentClassDto> studentClassDtos = new ArrayList<>();
         studentClassRepository.findAll().forEach(c -> studentClassDtos.add(StudentClassDto.buildFrom(c)));
