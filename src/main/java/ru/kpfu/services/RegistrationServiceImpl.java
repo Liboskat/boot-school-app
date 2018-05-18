@@ -61,7 +61,6 @@ public class RegistrationServiceImpl implements RegistrationService {
                 .build();
         userRepository.save(user);
         studentClass.getStudents().add(user);
-        studentClassRepository.save(studentClass);
         invite.setIsUsed(true);
         inviteRepository.save(invite);
     }

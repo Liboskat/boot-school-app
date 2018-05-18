@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"ru.kpfu.controllers", "ru.kpfu.security", "ru.kpfu.services", "ru.kpfu.validators",
-        "ru.kpfu.interceptors", "ru.kpfu.config"})
+        "ru.kpfu.config"})
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableJpaRepositories(basePackages = "ru.kpfu.repositories")
 @EntityScan(basePackages = "ru.kpfu.models")
@@ -21,9 +21,4 @@ public class SchoolApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(SchoolApplication.class, args);
     }
-
-//    @Override
-//    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-//        return application.sources(SchoolApplication.class);
-//    }
 }

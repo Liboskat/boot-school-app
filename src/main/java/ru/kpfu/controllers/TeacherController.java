@@ -15,6 +15,7 @@ import ru.kpfu.forms.AddMarkForm;
 import ru.kpfu.services.DateUtil;
 import ru.kpfu.services.TeacherService;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -60,8 +61,6 @@ public class TeacherController {
                 modelMap.put("students", teacherService.getStudentsByLesson(lessonId));
                 modelMap.put("marks", teacherService.getMarksByLessonAndDate(lessonId, date));
             }
-            System.out.println(date);
-            System.out.println(lessonId);
             return "teacher_lesson";
         }
     }
@@ -71,8 +70,8 @@ public class TeacherController {
     public String addMarkOrHomework(RedirectAttributes redirectAttributes,
                                     @RequestParam(value = "date", required = false) String date,
                                     @RequestParam(value = "lessonId", required = false) String lessonId,
-                                    @ModelAttribute("mark_form") AddMarkForm addMarkForm,
-                                    @ModelAttribute("homework_form") AddHomeworkForm addHomeworkForm){
+                                    @Valid @ModelAttribute("mark_form") AddMarkForm addMarkForm,
+                                    @Valid @ModelAttribute("homework_form") AddHomeworkForm addHomeworkForm){
         if(!(addHomeworkForm.getHomeworkText() == null || addHomeworkForm.getHomeworkText().isEmpty())) {
             teacherService.saveHomework(addHomeworkForm);
         } else if(!(addMarkForm.getStudentId() == null || addMarkForm.getStudentId().isEmpty()

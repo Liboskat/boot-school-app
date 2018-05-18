@@ -33,7 +33,7 @@ public class DateUtilImpl implements DateUtil {
         try {
             return dateFormat.parse(dateString);
         } catch (ParseException e) {
-            throw new RuntimeException("server error");
+            throw new RuntimeException("Серверная ошибка");
         }
     }
 
@@ -74,16 +74,16 @@ public class DateUtilImpl implements DateUtil {
         Calendar start = Calendar.getInstance();
         start.set(MONTH, SEPTEMBER);
         start.set(DAY_OF_MONTH, 1);
+        start.set(DAY_OF_WEEK, start.getFirstDayOfWeek());
 
         if(getMonth(date) < SEPTEMBER) {
             start.set(YEAR, start.get(YEAR) - 1);
         }
         DateTime dateTime1 = new DateTime(start.getTime());
         DateTime dateTime2 = new DateTime(date);
-        return Weeks.weeksBetween(dateTime1, dateTime2).getWeeks() + 1;
+        return Weeks.weeksBetween(dateTime1, dateTime2).getWeeks();
     }
 
-    //because of so stupid english mans starting their week from sunday
     private int getNormalDayOfWeek(int dayOfWeekFromCalendar) {
         if(dayOfWeekFromCalendar == SUNDAY) {
             return 7;

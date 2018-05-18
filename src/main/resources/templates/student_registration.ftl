@@ -39,7 +39,7 @@
 
 <#if error??>
 <div class="alert alert-danger">
-    <strong>Ошибка!</strong> ${error}.
+    <strong>Ошибка!</strong> ${error}
 </div>
 </#if>
 
