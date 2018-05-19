@@ -1,7 +1,5 @@
 package ru.kpfu.repositories;
 
-import org.hibernate.annotations.Cache;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -1,3 +1,5 @@
+CREATE DATABASE school_app;
+
 CREATE TABLE invite (
   id SERIAL NOT NULL,
   code TEXT NOT NULL UNIQUE,
